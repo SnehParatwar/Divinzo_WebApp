@@ -1,0 +1,49 @@
+/* Reset default margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f1f1;
+    color: #393535;
+    height: 100px; /* Adjust as necessary for desired height */
+    padding: 0 20px;
+    position: relative;
+  }
+  
+  .logo {
+    height: 80px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+  
+  .right-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sign-in-button {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sign-in-button:hover {
+    background-color: #ddd;
+  }
+  

@@ -1,0 +1,11 @@
+/* src/pages/customer/homepage/homepage.css */
+.homepage {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .homepage h1 {
+    font-size: 2em;
+    color: #333;
+  }
+  

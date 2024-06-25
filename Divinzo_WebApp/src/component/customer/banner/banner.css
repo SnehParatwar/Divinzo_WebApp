@@ -1,0 +1,48 @@
+/* src/components/banner.css */
+
+.banner-slider {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .banner-item {
+    position: relative;
+    text-align: center;
+    background: #000;
+  }
+  
+  .banner-image,
+  .banner-video,
+  iframe {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Adjust for desktop */
+    object-fit: cover;
+  }
+  
+  .banner-video {
+    pointer-events: none; /* Disable video controls interaction */
+  }
+  
+  @media (max-width: 768px) {
+    .banner-image,
+    .banner-video,
+    iframe {
+      max-height: 300px; /* Adjust for mobile */
+    }
+  }
+  
+  .slick-dots {
+    bottom: 10px;
+  }
+  
+  .slick-dots li button:before {
+    color: #fff;
+  }
+  
+  .slick-prev,
+  .slick-next {
+    z-index: 1;
+  }
+  

@@ -1,0 +1,34 @@
+.image-slider-container {
+  width: 110%;
+  margin: 0 auto; 
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Full viewport height */
+  overflow: hidden;
+  background-color: #000; /* Optional: Set a background color */
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+.slick-dots {
+  bottom: 10px;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+  color: #fff;
+  opacity: 0.75;
+}
+
+.slick-dots li.slick-active button:before {
+  color: chocolate;
+  opacity: 1;
+}

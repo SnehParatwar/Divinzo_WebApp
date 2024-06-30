@@ -19,3 +19,7 @@ function App() {
 }
 
 export default App;
+
+// #495e52 green
+// #d6b16f yellow
+// #eaeaea white

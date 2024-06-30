@@ -1,9 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search as SearchIcon, AccountCircle as ProfileIcon, ShoppingCart as ShoppingCartIcon, Favorite as HeartIcon, ExpandMore as ArrowDropDownIcon } from '@mui/icons-material';
+import {
+  Search as SearchIcon,
+  AccountCircle as ProfileIcon,
+  ShoppingCart as ShoppingCartIcon,
+  Favorite as HeartIcon,
+  ExpandMore as ArrowDropDownIcon
+} from '@mui/icons-material';
 import './cust_header.css';
-import logo from '../../../assets/logo/Divinzo_logo.jpg';
+import logo from '../../../assets/logo/Divinzo_logo.png';
 import Clothing from '../../../assets/logo/clothing.jpeg';
-import Clothing1 from '../../../assets/logo/clothing1.jpg'
+import Clothing1 from '../../../assets/logo/clothing1.jpg';
+import Ethnic from '../../../assets/logo/ethnic1.jpg';
+import Ethnic1 from '../../../assets/logo/ethnic3.jpg';
+import Accessories from '../../../assets/logo/accessories.jpg';
+import Accessories1 from '../../../assets/logo/accessories2.jpg';
+import Fabric from '../../../assets/logo/fabric.jpeg';
+import Fabric1 from '../../../assets/logo/fabric2.jpeg';
 
 const CustHeader = () => {
   const [megaMenuVisible, setMegaMenuVisible] = useState(false);
@@ -22,29 +34,39 @@ const CustHeader = () => {
       categories1: ['Sarees', 'Salwar Kameez', 'Lehengas', 'Kurtas', 'Shawls', 'Dupattas'],
       categories2: ['Traditional Favourites', 'Festive Collection', 'Daily Wear'],
       categories3: ['For Weddings', 'For Festivals', 'For Everyday Comfort', 'Special Occasions', 'Cultural Events'],
-      image: 'https://pin.it/K6BHaYIWS' // Replace with actual image URL
+      image: Ethnic,
+      image1: Ethnic1
     },
     ACCESSORIES: {
       categories1: ['Bags', 'Belts', 'Hats', 'Scarves', 'Jewellery', 'Watches'],
       categories2: ['Latest Trends', 'Must-Have Accessories', 'Popular Choices'],
       categories3: ['For Casual Outfits', 'For Formal Events', 'For Vacations', 'For Daily Use', 'For Parties'],
-      image: 'https://pin.it/K6BHaYIWS' // Replace with actual image URL
+      image: Accessories,
+      image1: Accessories1
     },
     FABRICS: {
       categories1: ['Cotton', 'Silk', 'Linen', 'Wool', 'Synthetics', 'Blends'],
       categories2: ['New Arrivals', 'Seasonal Favourites', 'Top Sellers'],
       categories3: ['For Summer', 'For Winter', 'For All Seasons', 'For Special Events', 'For Work'],
-      image: 'https://pin.it/K6BHaYIWS' // Replace with actual image URL
+      image: Fabric,
+      image1: Fabric1
+    },
+    'HOME & LIVING': {
+      categories1: ['Cotton', 'Silk', 'Linen', 'Wool', 'Synthetics', 'Blends'],
+      categories2: ['New Arrivals', 'Seasonal Favourites', 'Top Sellers'],
+      categories3: ['For Summer', 'For Winter', 'For All Seasons', 'For Special Events', 'For Work'],
+      image: Fabric,
+      image1: Fabric1
     }
   };
 
-  const toggleMegaMenu = (collection) => {
-    if (activeCollection === collection) {
-      setMegaMenuVisible(!megaMenuVisible);
-    } else {
-      setMegaMenuVisible(true);
-    }
+  const showMegaMenu = (collection) => {
     setActiveCollection(collection);
+    setMegaMenuVisible(true);
+  };
+
+  const hideMegaMenu = () => {
+    setMegaMenuVisible(false);
   };
 
   const renderMegaMenu = () => {
@@ -52,7 +74,9 @@ const CustHeader = () => {
     const { categories1, categories2, categories3, image, image1 } = collections[activeCollection];
 
     return (
-      <div className={`mega-menu ${megaMenuVisible ? 'active' : ''}`} ref={megaMenuRef}>
+      <div className={`mega-menu ${megaMenuVisible ? 'active' : ''}`} ref={megaMenuRef}
+        onMouseEnter={() => setMegaMenuVisible(true)}
+        onMouseLeave={hideMegaMenu}>
         <div className="mega-menu-content">
           <div className="categories1">
             <h3>Shop by category</h3>
@@ -73,7 +97,7 @@ const CustHeader = () => {
             ))}
           </div>
           <div className="menu-image">
-            <img src={image} alt={`${activeCollection} image`} width={250}/>
+            <img src={image} alt={`${activeCollection} image`} width={250} />
             <img src={image1} alt={`${activeCollection} image1`} width={250} />
           </div>
         </div>
@@ -84,6 +108,7 @@ const CustHeader = () => {
   const handleClickOutside = (event) => {
     if (megaMenuRef.current && !megaMenuRef.current.contains(event.target)) {
       setMegaMenuVisible(false);
+      setActiveCollection('');
     }
   };
 
@@ -108,23 +133,27 @@ const CustHeader = () => {
           <img src={logo} alt="Prakash Electricals" />
         </a>
         <div className="collection-menu">
-          <a href="/home" className="collection-link">HOME</a>
-          <a href="/about" className="collection-link">ABOUT</a>
-          <div className="collection-link-with-icon" onClick={() => toggleMegaMenu('CLOTHING')}>
-            <a className="collection-link">CLOTHING</a>
-            <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" />
+          <a href="/" className="collection-link">HOME</a>
+          {/* <a href="/about" className="collection-link">ABOUT</a> */}
+          <div className="collection-link-with-icon" onMouseEnter={() => showMegaMenu('CLOTHING')} onMouseLeave={hideMegaMenu}>
+            <a href="/clothing" className="collection-link">CLOTHING</a>
+            {/* <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" /> */}
           </div>
-          <div className="collection-link-with-icon" onClick={() => toggleMegaMenu('ETHNIC WEAR')}>
-            <a className="collection-link">ETHNIC WEAR</a>
-            <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" />
+          <div className="collection-link-with-icon" onMouseEnter={() => showMegaMenu('ETHNIC WEAR')} onMouseLeave={hideMegaMenu}>
+            <a href="/ethnic-wear" className="collection-link">ETHNIC WEAR</a>
+            {/* <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" /> */}
           </div>
-          <div className="collection-link-with-icon" onClick={() => toggleMegaMenu('ACCESSORIES')}>
-            <a className="collection-link">ACCESSORIES</a>
-            <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" />
+          <div className="collection-link-with-icon" onMouseEnter={() => showMegaMenu('ACCESSORIES')} onMouseLeave={hideMegaMenu}>
+            <a href="/accessories" className="collection-link">ACCESSORIES</a>
+            {/* <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" /> */}
           </div>
-          <div className="collection-link-with-icon" onClick={() => toggleMegaMenu('FABRICS')}>
-            <a className="collection-link">FABRICS</a>
-            <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" />
+          <div className="collection-link-with-icon" onMouseEnter={() => showMegaMenu('FABRICS')} onMouseLeave={hideMegaMenu}>
+            <a href="/fabrics" className="collection-link">FABRICS</a>
+            {/* <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" /> */}
+          </div>
+          <div className="collection-link-with-icon" onMouseEnter={() => showMegaMenu('HOME & LIVING')} onMouseLeave={hideMegaMenu}>
+            <a href="/home-living" className="collection-link">HOME & LIVING</a>
+            {/* <ArrowDropDownIcon style={{ fontSize: 19, marginLeft: 5, color: '#333' }} className="dropdown-icon" /> */}
           </div>
           <a href="/contact" className="collection-link">CONTACT US</a>
         </div>
